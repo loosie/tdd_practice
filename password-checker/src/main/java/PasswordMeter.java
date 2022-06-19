@@ -1,18 +1,9 @@
 public class PasswordMeter {
 
 	public PasswordStrength meter(String password) {
-		if (password == null || password.isEmpty()) {
-			throw new IllegalArgumentException();
-		}
+		checkPasswordInputIsEmpty(password);
 
-		boolean lengthRule = password.length() >= 8;
-		boolean containsUp = containsUppercase(password);
-		boolean containsDi = containsDigit(password);
-
-		int metCount = 0;
-		if(lengthRule) metCount++;
-		if(containsUp) metCount++;
-		if(containsDi) metCount++;
+		int metCount = calculateMetCount(password);
 
 		if(metCount <= 1){
 			return PasswordStrength.WEAK;
@@ -21,6 +12,24 @@ public class PasswordMeter {
 		}
 
 		return PasswordStrength.STRONG;
+	}
+
+	private int calculateMetCount(String password) {
+		int metCount = 0;
+		if(passwordLengthIsEightOrMore(password)) metCount++;
+		if(containsUppercase(password)) metCount++;
+		if(containsDigit(password)) metCount++;
+		return metCount;
+	}
+
+	private void checkPasswordInputIsEmpty(String password) {
+		if (password == null || password.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private boolean passwordLengthIsEightOrMore(String password) {
+		return password.length() >= 8;
 	}
 
 	private boolean containsUppercase(String password) {
