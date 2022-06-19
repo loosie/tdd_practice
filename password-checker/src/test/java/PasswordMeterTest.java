@@ -10,4 +10,11 @@ public class PasswordMeterTest {
 		Assertions.assertThrows(IllegalArgumentException.class,
 			() -> new PasswordMeter().meter(null));
 	}
+
+	@DisplayName("빈 값 입력이면 IllegalArgumentException 발생")
+	@Test
+	void emptyInput() {
+		Assertions.assertThrows(IllegalArgumentException.class,
+			() -> new PasswordMeter().meter(""));
+	}
 }
