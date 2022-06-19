@@ -24,7 +24,18 @@ public class PasswordMeterTest {
 	@DisplayName("모든 조건을 충족하는 경우 상태는 강함")
 	@Test
 	void passwordMatchesAllConditions(){
-		PasswordStrength result = passwordMeter.meter("abcABC123");
-		assertEquals(result, PasswordStrength.STRONG);
+		assertPasswordStrength("abcABC123", PasswordStrength.STRONG);
+		assertPasswordStrength("123aAbBcC", PasswordStrength.STRONG);
+	}
+
+	@DisplayName("길이가 8미만, 다른 조건 충족하면 상태는 보통")
+	@Test
+	void passwordLenLessThanEight_AllOtherConditionsAreMatches(){
+		assertPasswordStrength("abcA123", PasswordStrength.NORMAL);
+	}
+
+	private void assertPasswordStrength(String password, PasswordStrength expected) {
+		PasswordStrength result = passwordMeter.meter(password);
+		assertEquals(result, expected);
 	}
 }
