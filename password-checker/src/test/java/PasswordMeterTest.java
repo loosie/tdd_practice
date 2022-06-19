@@ -32,6 +32,15 @@ public class PasswordMeterTest {
 	@Test
 	void passwordLenLessThanEight_AllOtherConditionsAreMatches(){
 		assertPasswordStrength("abcA123", PasswordStrength.NORMAL);
+		assertPasswordStrength("123abcC", PasswordStrength.NORMAL);
+		assertPasswordStrength("Cabc12", PasswordStrength.NORMAL);
+	}
+
+	@DisplayName("대문자 없음, 다른 조건 충족하면 상태는 보통")
+	@Test
+	void passwordNotIncludeUpperCase_AllOtherConditionsAreMatches(){
+		assertPasswordStrength("abcd1234", PasswordStrength.NORMAL);
+		assertPasswordStrength("1234abcdef", PasswordStrength.NORMAL);
 	}
 
 	private void assertPasswordStrength(String password, PasswordStrength expected) {
