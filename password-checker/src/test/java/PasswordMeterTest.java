@@ -43,6 +43,14 @@ public class PasswordMeterTest {
 		assertPasswordStrength("1234abcdef", PasswordStrength.NORMAL);
 	}
 
+	@DisplayName("숫자 없음, 다른 조건 충족하면 상태는 보통")
+	@Test
+	void passwordNotIncludeDigit_AllOtherConditionsAreMatches(){
+		assertPasswordStrength("ABCDEFGHabcde", PasswordStrength.NORMAL);
+		assertPasswordStrength("abcdeFGHIGK", PasswordStrength.NORMAL);
+	}
+
+
 	private void assertPasswordStrength(String password, PasswordStrength expected) {
 		PasswordStrength result = passwordMeter.meter(password);
 		assertEquals(result, expected);

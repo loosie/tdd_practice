@@ -15,12 +15,26 @@ public class PasswordMeter {
 			return PasswordStrength.NORMAL;
 		}
 
+		boolean containsDi = containsDigit(password);
+		if(!containsDi){
+			return PasswordStrength.NORMAL;
+		}
+
 		return PasswordStrength.STRONG;
 	}
 
 	private boolean containsUppercase(String password) {
 		for(char ch : password.toCharArray()){
 			if('A' <= ch && ch <= 'Z'){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean containsDigit(String password) {
+		for(char ch : password.toCharArray()){
+			if('0' <= ch && ch <= '9'){
 				return true;
 			}
 		}
