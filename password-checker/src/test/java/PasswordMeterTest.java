@@ -50,6 +50,23 @@ public class PasswordMeterTest {
 		assertPasswordStrength("abcdeFGHIGK", PasswordStrength.NORMAL);
 	}
 
+	@DisplayName("길이만 충족, 다른 조건 충족하지 않은 경우 상태는 약함")
+	@Test
+	void passwordOnlyMatchesLengthRule_AllOtherConditionsAreNotMatches(){
+		assertPasswordStrength("abcdefgh", PasswordStrength.WEAK);
+	}
+
+	@DisplayName("대문자만 충족, 다른 조건 충족하지 않은 경우 상태는 약함")
+	@Test
+	void passwordOnlyMatchesUpperCase_AllOtherConditionsAreNotMatches(){
+		assertPasswordStrength("abcABC", PasswordStrength.WEAK);
+	}
+
+	@DisplayName("숫자만 충족, 다른 조건 충족하지 않은 경우 상태는 약함")
+	@Test
+	void passwordOnlyMatchesDigit_AllOtherConditionsAreNotMatches(){
+		assertPasswordStrength("abc123", PasswordStrength.WEAK);
+	}
 
 	private void assertPasswordStrength(String password, PasswordStrength expected) {
 		PasswordStrength result = passwordMeter.meter(password);

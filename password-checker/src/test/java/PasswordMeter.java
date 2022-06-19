@@ -6,17 +6,17 @@ public class PasswordMeter {
 		}
 
 		boolean lengthRule = password.length() >= 8;
-		if (!lengthRule) {
-			return PasswordStrength.NORMAL;
-		}
-
 		boolean containsUp = containsUppercase(password);
-		if(!containsUp){
-			return PasswordStrength.NORMAL;
-		}
-
 		boolean containsDi = containsDigit(password);
-		if(!containsDi){
+
+		int metCount = 0;
+		if(lengthRule) metCount++;
+		if(containsUp) metCount++;
+		if(containsDi) metCount++;
+
+		if(metCount == 1){
+			return PasswordStrength.WEAK;
+		} else if(metCount == 2) {
 			return PasswordStrength.NORMAL;
 		}
 
