@@ -1,6 +1,10 @@
 public class PasswordMeter {
 
-	public void meter(String password) {
-		throw new IllegalArgumentException();
+	public PasswordStrength meter(String password) {
+		if(password == null || password.isEmpty()){
+			throw new IllegalArgumentException();
+		}
+
+		return PasswordStrength.STRONG;
 	}
 }
