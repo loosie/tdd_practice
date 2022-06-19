@@ -18,7 +18,21 @@
 ### 1개 이하의 규칙을 충족하면 약함이다.
  
  
- 
+<br>
+
+## 커밋 로그 
+[password-checker] [#method] : [#content]
+
+### method
+- feat: 새로운 기능 추가
+- docs: 문서 수정
+- fix: 버그 수정  
+- refactor: 코드 리팩토링
+- test: 테스트 코드, 리팩토링
+- style: 스타일 관련 부분 (코드 포맷, 줄바꿈, 인덴트 등)
+
+
  <br>
+ 
  ---
  ref. https://youtu.be/6Vt-wKPBbuc
