@@ -14,7 +14,7 @@ public class PasswordMeter {
 		if(containsUp) metCount++;
 		if(containsDi) metCount++;
 
-		if(metCount == 1){
+		if(metCount <= 1){
 			return PasswordStrength.WEAK;
 		} else if(metCount == 2) {
 			return PasswordStrength.NORMAL;

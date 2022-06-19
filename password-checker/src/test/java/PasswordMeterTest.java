@@ -68,6 +68,12 @@ public class PasswordMeterTest {
 		assertPasswordStrength("abc123", PasswordStrength.WEAK);
 	}
 
+	@DisplayName("아무런 조건도 충족하지 않는 경우")
+	@Test
+	void passwordNotMatchesAllConditions(){
+		assertPasswordStrength("abc", PasswordStrength.WEAK);
+	}
+
 	private void assertPasswordStrength(String password, PasswordStrength expected) {
 		PasswordStrength result = passwordMeter.meter(password);
 		assertEquals(result, expected);
