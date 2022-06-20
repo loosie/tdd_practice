@@ -1,3 +1,5 @@
+package passwordchecker;
+
 public class PasswordMeter {
 
 	public PasswordStrength meter(String password) {
